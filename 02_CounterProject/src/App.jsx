@@ -26,6 +26,18 @@ function App() {
     }
     console.log("value substracted",counter)
   }
+  const setCount_Callback=()=>{
+    // setCount(counter+1)
+    // setCount(counter+1)
+    // setCount(counter+1)
+    // setCount(counter+1)
+    // value gets updated only once instead of 4 times, bcz react encloses all these line in batch as they are called back to back, and then checks if they are smilar, if yes then it only updates it once
+    setCount(prevCounter=>prevCounter+1)
+    setCount(prevCounter=>prevCounter+1)
+    setCount((Counter)=>Counter+1) // we can  give parenthesis, and no matter what name we give to prevCounter it works as fuinction treats it as an prevCounter Anyway
+    setCount((counter)=>counter+1)
+    // to avoid this, setCounter also takes callback, which taked a previous updated value of counter (prevcounter), then it updates all values one after another as, its taking previous counter then again performing update operation
+  }
   return(
     <>
     <h1>Chai aur React</h1>
@@ -33,6 +45,8 @@ function App() {
     <button onClick={addValue}>add value{counter}</button>
     <br />
     <button onClick={subsValue}>Remove value{counter}</button>
+    <br />
+    <button onClick={setCount_Callback}>Interview Concept{counter}</button>
     </>
   )
 }
